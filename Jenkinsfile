@@ -19,7 +19,7 @@ pipeline{
         }
         
 
-        stage("Static Code Analysis"){
+        stage("Code Analysis"){
             steps{
                 bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9090'
             }
