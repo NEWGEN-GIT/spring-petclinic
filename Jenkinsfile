@@ -21,7 +21,7 @@ pipeline{
 
         stage("Code Analysis"){
             steps{
-                bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9090'
+                bat 'mvn sonar:sonar -Dsonar.host.url=http://192.168.56.241:9000'
             }
         }
         
