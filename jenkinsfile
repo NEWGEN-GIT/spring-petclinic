@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    tools {
+        maven 'maven3'
+        jdk 'jdk8'
+    }
+    stages{
+            stage("SCM"){
+            steps{
+                
+               checkout([$class: 'SubversionSCM', additionalCredentials: [], excludedCommitMessages: '', excludedRegions: '', excludedRevprop: '', excludedUsers: '', filterChangelog: false, ignoreDirPropChanges: false, includedRegions: '', locations: [[cancelProcessOnExternalsFail: true, credentialsId: 'a8f926d0-e8dc-4ccb-bf67-604104da77a8', depthOption: 'infinity', ignoreExternalsOption: true, local: '.', remote: 'http://apsvn.newgen.co.in/svn/ap2/aproj2/CoE_Credit_Origination_System/Bank Albilad CLOS Islamic Work/Code/CI/SpringBootTest']], quietOperation: true, workspaceUpdater: [$class: 'UpdateUpdater']])
+            }
+        }
+        
+        stage("Build"){
+            steps{
+                bat 'mvn clean package'
+            }
+        }
+		
+        stage('SonarQube analysis') {
+            steps {
+                bat 'mvn sonar:sonar'
+            }
+        }
+        
+		
+
+        
+  }
+}
